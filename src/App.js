@@ -19,7 +19,7 @@ const app = props => {
 
   console.log(personsState, otherState);
 
-  const switchNameHandler = () => {
+  const switchNameHandler = (newName) => {
     console.log("Switch Name button clicked.");
     // DON't DO THIS: this.state.persons[0].name = "Maximumilian";
     // setState is only available in class-based Component
@@ -28,7 +28,7 @@ const app = props => {
     // Note: React Hooks doesn't merge new state with the old state
     setPersonsState( {
         persons: [
-          {name: 'Maximumilian', age: 28},
+          {name: newName, age: 28},
           {name: 'Manu', age: 29},
           {name: 'Stephanie', age: 27}
         ]
@@ -39,10 +39,17 @@ const app = props => {
     <div className="App">
       <h1>Hi, I'm a React App.</h1>
       <p>This is really working!</p>
-      <button onClick={switchNameHandler}>Switch Name</button>
-      <Person name={personsState.persons[0].name} age={personsState.persons[0].age}></Person>
-      <Person name={personsState.persons[1].name} age={personsState.persons[1].age}>My Hobbies: Racing</Person>
-      <Person name={personsState.persons[2].name} age={personsState.persons[2].age}></Person> 
+      <button onClick={ () => switchNameHandler('Maximumilian!!') }>Switch Name</button>
+      <Person 
+        name={personsState.persons[0].name} 
+        age={personsState.persons[0].age} />
+      <Person  
+        name={personsState.persons[1].name} 
+        age={personsState.persons[1].age}
+        click={switchNameHandler.bind(this, 'Max!')}>My Hobbies: Racing</Person>
+      <Person 
+        name={personsState.persons[2].name} 
+        age={personsState.persons[2].age} />
     </div>
   );
   // the lowercase is reserved for native HTML in JSX like div, so components usually use uppercase. 
