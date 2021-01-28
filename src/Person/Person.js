@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Person Component is a stateless/dumb/presentational Component - because it has no internal state management
 const person = (props) => {
     return (
         <div>

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person'; // js extension can be ommitted due to the build workflow
 
+// App Component is a stateful Component
+// Either Class based with state or Functional based with useState are called smart Component or container Component because they contain the state or your application
 const app = props => {
   // Use Destructuring to pull out the current state and setState function definition
   const [ personsState, setPersonsState ] = useState ({
