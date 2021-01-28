@@ -3,41 +3,50 @@ import './App.css';
 import Person from './Person/Person'; // js extension can be ommitted due to the build workflow
 
 const app = props => {
+  // Use Destructuring to pull out the current state and setState function definition
+  const [ personsState, setPersonsState ] = useState ({
+    persons: [
+      {name: 'Max', age: 28},
+      {name: 'Manu', age: 29},
+      {name: 'Stephanie', age: 26}
+    ]
+  });
+
+  // avoid the lost of otherState, so need to define otherState here
+  const [otherState, setOtherState] = useState('some other value');
+
+  console.log(personsState, otherState);
+
+  const switchNameHandler = () => {
+    console.log("Switch Name button clicked.");
+    // DON't DO THIS: this.state.persons[0].name = "Maximumilian";
+    // setState is only available in class-based Component
+
+    // no this keyword needed here to reference inside class
+    // Note: React Hooks doesn't merge new state with the old state
+    setPersonsState( {
+        persons: [
+          {name: 'Maximumilian', age: 28},
+          {name: 'Manu', age: 29},
+          {name: 'Stephanie', age: 27}
+        ]
+    })
+  }
+
   return (
     <div className="App">
       <h1>Hi, I'm a React App.</h1>
       <p>This is really working!</p>
-      <button onClick={this.switchNameHandler}>Switch Name</button>
-      <Person name={this.state.persons[0].name} age={this.state.persons[0].age}></Person>
-      <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My Hobbies: Racing</Person>
-      <Person name={this.state.persons[2].name} age={this.state.persons[2].age}></Person> 
+      <button onClick={switchNameHandler}>Switch Name</button>
+      <Person name={personsState.persons[0].name} age={personsState.persons[0].age}></Person>
+      <Person name={personsState.persons[1].name} age={personsState.persons[1].age}>My Hobbies: Racing</Person>
+      <Person name={personsState.persons[2].name} age={personsState.persons[2].age}></Person> 
     </div>
   );
   // the lowercase is reserved for native HTML in JSX like div, so components usually use uppercase. 
-  
 }
 
 export default app;
 
 
-state = {
-  persons: [
-    {name: 'Max', age: 28},
-    {name: 'Manu', age: 29},
-    {name: 'Stephanie', age: 26}
-  ],
-  otherState: 'some other value'
-}
 
-switchNameHandler = () => {
-  console.log("Switch Name button clicked.");
-  // DON't DO THIS: this.state.persons[0].name = "Maximumilian";
-  // setState is only available in class-based Component
-  this.setState( {
-      persons: [
-        {name: 'Maximumilian', age: 28},
-        {name: 'Manu', age: 29},
-        {name: 'Stephanie', age: 27}
-      ]
-  })
-}
