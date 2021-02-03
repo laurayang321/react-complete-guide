@@ -48,7 +48,29 @@ class App extends Component {
     this.setState( {showPersons: !doesShow} );
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  }
+
   render() {
+    
+    let persons = null;
+
+    if ( this.state.showPersons ) {
+      // if the condition is true: assign persons var to some JSX code
+      persons = (
+        <div>
+          {this.state.persons.map((person, index) => {
+              return <Person 
+                click = {() => this.deletePersonHandler(index)}
+                name={person.name} 
+                age={person.age} />
+          })}
+        </div>
+      );
+    }
 
     const style = {
       backgroundColor: 'white',
@@ -57,27 +79,6 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
-
-    let persons = null;
-
-    if ( this.state.showPersons ) {
-      // if the condition is true: assign persons var to some JSX code
-      persons = (
-        <div >
-          <Person 
-            name={this.state.persons[0].name} 
-            age={this.state.persons[0].age} />
-          <Person  
-            name={this.state.persons[1].name} 
-            age={this.state.persons[1].age}
-            click={this.switchNameHandler.bind(this, 'Max!')}
-            changed={this.nameChangedHandler} >My Hobbies: Racing</Person>
-          <Person 
-            name={this.state.persons[2].name} 
-            age={this.state.persons[2].age} />
-        </div> 
-      );
-    }
 
     return (
       <div className="App">
