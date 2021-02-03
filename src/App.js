@@ -8,9 +8,9 @@ class App extends Component {
   // Use Destructuring to pull out the current state and setState function definition
   state = {
     persons: [
-      {name: 'Max', age: 28},
-      {name: 'Manu', age: 29},
-      {name: 'Stephanie', age: 26}
+      { id: 'abc1', name: 'Max', age: 28 },
+      { id: 'abc2', name: 'Manu', age: 29 },
+      { id: 'abc3', name: 'Stephanie', age: 26 }
     ],
     otherState: 'Some other value',
     showPersons: false
@@ -71,7 +71,8 @@ class App extends Component {
               return <Person 
                 click = {() => this.deletePersonHandler(index)}
                 name={person.name} 
-                age={person.age} />
+                age={person.age} 
+                key={person.id}/>
           })}
         </div>
       );
