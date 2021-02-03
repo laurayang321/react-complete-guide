@@ -68,7 +68,15 @@ class App extends Component {
   }
 
   render() {
-    
+
+    const style = {
+      backgroundColor: 'green',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     let persons = null;
 
     if ( this.state.showPersons ) {
@@ -85,15 +93,10 @@ class App extends Component {
           })}
         </div>
       );
+
+      style.backgroundColor = 'red';
     }
 
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
 
     return (
       <div className="App">
