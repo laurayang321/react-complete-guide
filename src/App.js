@@ -49,7 +49,12 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    const persons = this.state.persons;
+    // slice copies the full array
+    // const persons = this.state.persons.slice();
+
+    // ES6 syntax of Spread operator
+    // Should always update state with an immutable way without mutating the original state.
+    const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
   }
