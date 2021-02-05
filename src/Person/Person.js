@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Radium from 'radium';
 import './Person.css';
 
 // Person Component is a stateless/dumb/presentational Component - because it has no internal state management
@@ -13,4 +13,4 @@ const person = (props) => {
     )
 }
 
-export default person;
+export default Radium(person);
