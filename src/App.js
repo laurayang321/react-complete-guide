@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+
 import './App.css';
 import Person from './Person/Person'; // js extension can be ommitted due to the build workflow
 
@@ -71,6 +73,7 @@ class App extends Component {
 
     const style = {
       backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
