@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import Person from './Person/Person'; // js extension can be ommitted due to the build workflow
 
 // App Component is a stateful Component
@@ -116,14 +116,16 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App.</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <button 
-        style={style}
-        onClick={this.togglePersonsHandler}>Toggle Persons</button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a React App.</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          <button 
+          style={style}
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
   // the lowercase is reserved for native HTML in JSX like div, so components usually use uppercase. 
