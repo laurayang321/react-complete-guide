@@ -1,24 +1,7 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
 
 import './App.css';
 import Person from './Person/Person'; // js extension can be ommitted due to the build workflow
-
-// Dynamically inject JavaScript into the string
-const StyledButton = styled.button`
-  background-color: ${props => props.alt ? 'red' : 'green'};
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${props => props.alt ? 'salmon' : 'lightgreen'};
-    color: black;
-  }
-`;
-
 
 // App Component is a stateful Component
 // Either Class based with state or Functional based with useState are called smart Component or container Component because they contain the state or your application
@@ -124,9 +107,9 @@ class App extends Component {
         <div className="App">
           <h1>Hi, I'm a React App.</h1>
           <p className={classes.join(' ')}>This is really working!</p>
-          <StyledButton 
-          alt={this.state.persons.showPersons}
-          onClick={this.togglePersonsHandler}>Toggle Persons</StyledButton>
+          <button 
+          className = 'button'
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
           {persons}
         </div>
     );
