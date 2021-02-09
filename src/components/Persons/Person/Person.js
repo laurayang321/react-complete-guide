@@ -3,7 +3,6 @@ import classes from './Person.css';
 
 // Person Component is a stateless/dumb/presentational Component - because it has no internal state management
 const person = (props) => {
-
     return (
         <div className={classes.Person}>
             <p onClick = {props.click}>

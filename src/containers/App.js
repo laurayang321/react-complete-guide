@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+
 import classes from './App.css';
-import Person from '../components/Persons/Person'; // js extension can be ommitted due to the build workflow
+import Persons from '../components/Persons/Persons'; // js extension can be ommitted due to the build workflow
+import Cockpit from '../components/Cockpit/Cockpit';
 
 // App Component is a stateful Component
 // Either Class based with state or Functional based with useState are called smart Component or container Component because they contain the state or your application
@@ -70,55 +72,27 @@ class App extends Component {
   render() {
 
     let persons = null;
-    let btnClass = '';
 
     if ( this.state.showPersons ) {
       // if the condition is true: assign persons var to some JSX code
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-              return <Person
-                key={person.id}
-                click = {() => this.deletePersonHandler( index )}
-                name={person.name} 
-                age={person.age} 
-                changed={( event ) => this.nameChangedHandler(event, person.id)} />
-          })}
-        </div>
-      );
-
-      // style.backgroundColor = 'red';
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // }
-      btnClass = classes.Red;
-    }
-
-    //let classes = ['red', 'bold'].join(' '); //use join to convert array to string
-    let assignedClasses = [];
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red); // classes = ['red'];
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold); // classes = ['red', 'bold'];
+      persons = <Persons
+          persons={this.state.persons} 
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}/>;
     }
 
     return (
-        <div className={classes.App}>
-          <h1>Hi, I'm a React App.</h1>
-          <p className={assignedClasses.join(' ')}>This is really working!</p>
-          <button className={btnClass} onClick={this.togglePersonsHandler}>
-            Toggle Persons
-          </button>
-          {persons}
-        </div>
+      <div className={classes.App}>
+        <Cockpit 
+          showPersons = {this.state.showPersons}
+          persons = {this.state.persons}
+          clicked = {this.togglePersonsHandler}/>
+        {persons}
+      </div>
     );
   }
-  // the lowercase is reserved for native HTML in JSX like div, so components usually use uppercase. 
 }
 
-// this is called a higher order Component
 export default App; 
 
 
