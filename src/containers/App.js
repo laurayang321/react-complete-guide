@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Person from '../components/Persons/Person'; // js extension can be ommitted due to the build workflow
-import ErrorBoundary from '../components/ErrorBoundary/ErrorBoundary';
 
 // App Component is a stateful Component
 // Either Class based with state or Functional based with useState are called smart Component or container Component because they contain the state or your application
@@ -78,14 +77,12 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-              return 
-              <ErrorBoundary key={person.id}> 
-              <Person
+              return <Person
+                key={person.id}
                 click = {() => this.deletePersonHandler( index )}
                 name={person.name} 
                 age={person.age} 
                 changed={( event ) => this.nameChangedHandler(event, person.id)} />
-            </ErrorBoundary>
           })}
         </div>
       );
