@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
+
+    useEffect(() => {
+        // this will render for every render cycle of the cockpit
+        // when type, re-rendered app.js, state changes, it gets run
+        console.log('[Cockpit.js] useEffect');
+        // Http request ...
+    });
 
     //let classes = ['red', 'bold'].join(' '); //use join to convert array to string
     let assignedClasses = [];
