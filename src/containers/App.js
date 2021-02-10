@@ -8,6 +8,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // Either Class based with state or Functional based with useState are called smart Component or container Component because they contain the state or your application
 class App extends Component {
 
+  // 1.
   constructor(props) {
     super(props);
     console.log('[App.js] constructor');
@@ -23,6 +24,7 @@ class App extends Component {
     showPersons: false
   }
 
+  // 2.
   static getDerivedStateFromProps(props, state) {
     console.log('[App.js] getDerivedStateFromProps', props);
     return state;
@@ -32,8 +34,20 @@ class App extends Component {
   //   console.log('[App.js] componentWillMount');
   // }
 
+  // 4. fetching new data from a server 
   componentDidMount() {
     console.log('[App.js] componentDidMount');
+  }
+
+  // 3. can be used for performance improvements
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  // 5. fetching new data from a server 
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
   }
 
   switchNameHandler = (newName) => {
@@ -87,6 +101,7 @@ class App extends Component {
     this.setState({persons: persons});
   }
 
+  // 4. 
   render() {
 
     console.log('[App.js] render');
