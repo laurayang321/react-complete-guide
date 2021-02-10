@@ -7,7 +7,12 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // App Component is a stateful Component
 // Either Class based with state or Functional based with useState are called smart Component or container Component because they contain the state or your application
 class App extends Component {
-  // Use Destructuring to pull out the current state and setState function definition
+
+  constructor(props) {
+    super(props);
+    console.log('[App.js] constructor');
+  }  
+
   state = {
     persons: [
       { id: 'abc1', name: 'Max', age: 28 },
@@ -18,7 +23,20 @@ class App extends Component {
     showPersons: false
   }
 
- switchNameHandler = (newName) => {
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
+  // }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
+  }
+
+  switchNameHandler = (newName) => {
     console.log("Switch Name button clicked.");
     // DON't DO THIS: this.state.persons[0].name = "Maximumilian";
     // setState is only available in class-based Component
@@ -34,7 +52,7 @@ class App extends Component {
     })
   }
 
- nameChangedHandler = ( event, id ) => {
+  nameChangedHandler = ( event, id ) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
@@ -71,14 +89,18 @@ class App extends Component {
 
   render() {
 
+    console.log('[App.js] render');
     let persons = null;
 
     if ( this.state.showPersons ) {
       // if the condition is true: assign persons var to some JSX code
-      persons = <Persons
+      persons = (
+        <Persons
           persons={this.state.persons} 
           clicked={this.deletePersonHandler}
-          changed={this.nameChangedHandler}/>;
+          changed={this.nameChangedHandler}
+        />
+      );
     }
 
     return (
