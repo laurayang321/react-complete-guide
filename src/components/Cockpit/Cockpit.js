@@ -8,10 +8,11 @@ const cockpit = (props) => {
         // when type, re-rendered app.js, state changes, it gets run
         console.log('[Cockpit.js] useEffect');
         // Http request ...
-        setTimeout(() => {
+        const timer = setTimeout(() => {
             alert('Save data to cloud!');
         }, 1000);
         return () => {
+            clearTimeout(timer);
             console.log('[Cockpit.js] cleanup work in useEffect');
         };
     }, []); // only execute when person is changed
