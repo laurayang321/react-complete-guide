@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
   
   // 1.
   // static getDerivedStateFromProps(props, state) {
@@ -14,17 +14,19 @@ class Persons extends Component {
   // }
 
   // 2. runs when state changes like onChange event
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log('[Persons.js] shouldComponentUpdate');
-    // persons array is object and is copied by pointer, so here is comparing pointers
-    // this works because when person is updated, we updated by deep copy by Rest operator
-    if (nextProps.persons !== this.props.persons) {
-      return true;
-    } else {
-      return false;
-    }
-    // return true;
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log('[Persons.js] shouldComponentUpdate');
+  //   // persons array is object and is copied by pointer, so here is comparing pointers
+  //   // this works because when person is updated, we updated by deep copy by Rest operator
+  //   if (nextProps.persons !== this.props.persons 
+  //     || nextProps.changed !== this.props.changed
+  //     || nextProps.clicked !== this.props.clicked) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  //   // return true;
+  // }
 
   // 4. runs when state changes like onChange event
   getSnapshotBeforeUpdate(prevProps, prevState) {
