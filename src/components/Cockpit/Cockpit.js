@@ -11,11 +11,19 @@ const cockpit = (props) => {
         setTimeout(() => {
             alert('Save data to cloud!');
         }, 1000);
-    }, [props.persons]); // only execute when person is changed
-    // if array is empty, then it only exc once like componentDidMount
+        return () => {
+            console.log('[Cockpit.js] cleanup work in useEffect');
+        };
+    }, []); // only execute when person is changed
+    // if array is empty, then it only exc when the component is destroyed
 
-    // useEffect can be used multiple times
-    // useEffect();
+    // runs on every update cycle with no argument when re-render
+    useEffect(() => {
+        console.log('[Cockpit.js] 2nd useEffect');
+        return () => {
+            console.log('[Cockpit.js] cleanup work in 2nd useEffect');
+        };
+    });
 
     //let classes = ['red', 'bold'].join(' '); //use join to convert array to string
     let assignedClasses = [];
