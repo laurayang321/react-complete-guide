@@ -4,7 +4,8 @@ import classes from './App.css';
 import Persons from '../components/Persons/Persons'; // js extension can be ommitted due to the build workflow
 import Cockpit from '../components/Cockpit/Cockpit';
 
-import WithClass from '../hoc/WithClass';
+import Aux from '../hoc/Aux';
+import withClass from '../hoc/WithClass';
 
 
 // App Component is a stateful Component
@@ -123,7 +124,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={classes.App}>
+      <Aux>
         <button 
           onClick={() => {
             this.setState({ showCockpit: false });
@@ -140,11 +141,11 @@ class App extends Component {
           />
         ) : null}
         {persons}
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App; 
+export default withClass(App, classes.App); 
 
 
