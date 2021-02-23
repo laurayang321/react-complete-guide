@@ -5,7 +5,7 @@ import Persons from '../components/Persons/Persons'; // js extension can be ommi
 import Cockpit from '../components/Cockpit/Cockpit';
 
 import Aux from '../hoc/Aux';
-import withClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
 
 
 // App Component is a stateful Component

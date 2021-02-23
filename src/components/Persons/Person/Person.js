@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
 import Aux from '../../../hoc/Aux';
-// import classes from './Person.css';
+import withClass from '../../../hoc/withClass';
+import classes from './Person.css';
 
 // Person Component is a stateless/dumb/presentational Component - because it has no internal state management
 class Person extends Component {
     render() {
         console.log('[Person.js] rendering...');
         return (
-            <Aux>   
+            <Aux>
                 <p key='i1'onClick = {this.props.click}>
                     I'm {this.props.name}. I'm {this.props.age} years old.
                 </p>
@@ -24,4 +25,4 @@ class Person extends Component {
     }
 }
 
-export default Person;
+export default withClass(Person, classes.Person);
