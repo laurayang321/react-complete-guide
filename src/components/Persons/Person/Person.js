@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
@@ -23,6 +24,18 @@ class Person extends Component {
             </Aux>
         );
     }
+}
+
+// note: propTypes has to be lowercase
+// propTypes is a special property which you add to any Javascript object or any Javscript component object
+// that React will watch out for in development mode and give you a warning if pass in incorrect props
+
+// set up key value pairs: key is prop names; value is prop types
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
 }
 
 export default withClass(Person, classes.Person);
