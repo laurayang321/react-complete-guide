@@ -1,22 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
+
+    const toggleBtnRef = useRef(null);
+    // toggleBtnRef.current.click();
 
     useEffect(() => {
         // this will render for every render cycle of the cockpit
         // when type, re-rendered app.js, state changes, it gets run
         console.log('[Cockpit.js] useEffect');
         // Http request ...
-        const timer = setTimeout(() => {
-            alert('Save data to cloud!');
-        }, 1000);
+        // const timer = setTimeout(() => {
+        //     alert('Save data to cloud!');
+        // }, 1000);
+        
+        toggleBtnRef.current.click();
+
         return () => {
-            clearTimeout(timer);
+            // This makes sure it only runs after the component is rendered the first time
+            // then cleans up when it's unmounted with the empty array
+            // clearTimeout(timer); 
             console.log('[Cockpit.js] cleanup work in useEffect');
         };
-    }, []); // only execute when person is changed
-    // if array is empty, then it only exc when the component is destroyed
+    }, []); // if array is empty, then it only exc when the component is destroyed
+    // only execute when person is changed if the array contains persons array
+    
 
     // runs on every update cycle with no argument when re-render
     useEffect(() => {
@@ -46,6 +55,7 @@ const cockpit = (props) => {
             <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
             <button 
+                ref={toggleBtnRef}
                 className={btnClass} 
                 onClick={props.clicked}>Toggle Persons
             </button>
