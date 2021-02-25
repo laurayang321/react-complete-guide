@@ -5,6 +5,8 @@ import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
 import classes from './Person.css';
 
+import AuthContext from '../../../context/auth-context';
+
 // Person Component is a stateless/dumb/presentational Component - because it has no internal state management
 class Person extends Component {
 
@@ -22,7 +24,12 @@ class Person extends Component {
         console.log('[Person.js] rendering...');
         return (
             <Aux>
-                <p key='i1'onClick = {this.props.click}>
+                <AuthContext.Consumer>
+                    {context => 
+                        context.authenticated ? <p>Authenticated!</p> : <p>Please log in</p>
+                    }
+                </AuthContext.Consumer>
+                <p key='i1' onClick = {this.props.click}>
                     I'm {this.props.name}. I'm {this.props.age} years old.
                 </p>
                 <p key='i2'>{this.props.children}</p>

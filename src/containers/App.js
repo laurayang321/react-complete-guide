@@ -7,6 +7,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 import Aux from '../hoc/Aux';
 import withClass from '../hoc/withClass';
 
+import AuthContext from '../context/auth-context';
 
 // App Component is a stateful Component
 // Either Class based with state or Functional based with useState are called smart Component or container Component because they contain the state or your application
@@ -27,7 +28,8 @@ class App extends Component {
     otherState: 'Some other value',
     showPersons: false,
     showCockpit: true,
-    changeCounter: 0
+    changeCounter: 0,
+    authenticated: false
   }
 
   // 2.
@@ -96,6 +98,10 @@ class App extends Component {
     });
   }
 
+  loginHandler = () => {
+    this.setState( {authenticated: true} );
+  }
+
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     // the setState is merged with the old states in class-based Component setState
@@ -139,15 +145,25 @@ class App extends Component {
         >
             Remove Cockpit
         </button>
-        {this.state.showCockpit ? (
-          <Cockpit 
-            title={this.props.appTitle}
-            showPersons = {this.state.showPersons}
-            personsLength = {this.state.persons.length}
-            clicked = {this.togglePersonsHandler}
-          />
-        ) : null}
-        {persons}
+
+        <AuthContext.Provider 
+          value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler
+          }}
+        >
+
+          {this.state.showCockpit ? (
+            <Cockpit 
+              title={this.props.appTitle}
+              showPersons = {this.state.showPersons}
+              personsLength = {this.state.persons.length}
+              clicked = {this.togglePersonsHandler}
+            />
+          ) : null}
+          {persons}
+
+        </AuthContext.Provider>
       </Aux>
     );
   }
